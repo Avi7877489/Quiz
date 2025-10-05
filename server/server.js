@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('dist'));
 
 // Initialize DB with tables + seed data
 initDB();
