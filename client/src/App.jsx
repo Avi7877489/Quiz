@@ -3,7 +3,7 @@ import StartScreen from './components/StartScreen';
 import QuizScreen from './components/QuizScreen';
 import ResultScreen from './components/ResultScreen';
 
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function App() {
   const [screen, setScreen] = useState('start');
@@ -15,7 +15,7 @@ export default function App() {
   const fetchQuiz = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/quiz/1');
+      const response = await fetch(`${API_URL}/api/quiz/1`);
       const data = await response.json();
       setQuiz(data);
       setScreen('quiz');
@@ -30,7 +30,7 @@ export default function App() {
   const handleSubmit = async (finalAnswers) => {
     setLoading(true);
     try {
-      const response = await fetch('/api/quiz/1/submit', {
+      const response = await fetch(`${API_URL}/api/quiz/1/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ answers: finalAnswers })
